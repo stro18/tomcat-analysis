@@ -11,7 +11,8 @@ done < "$filename"
 if [ "$1" = "select" ]; then
   ./tomcat-analysis select -folder ../tomcat/ -classFolder java:src/main/java:webapps/examples/WEB-INF/classes:webapps/examples/jsp/plugin/applet -testClassFolder test \
     -testExecutor de.stro18.peass_ant.executor.AntTestExecutor -testTransformer de.dagere.peass.testtransformation.JUnitTestTransformer \
-    -startversion 6cf20b4a83f1e5b2ae86525b6b96389e801776b2 -endversion b1ca09f34d0c22727bb5082053c7ae23c30ec8f2 -threads 2 -traceSizeInMb 10 -timeout 2 \
+    -startversion 6cf20b4a83f1e5b2ae86525b6b96389e801776b2 -endversion b1ca09f34d0c22727bb5082053c7ae23c30ec8f2 \
+    -threads 2 -traceSizeInMb 10 -timeout 2 \
     -includes org.apache.* -forbiddenMethods org.apache.catalina.startup.Tomcat#start -excludes '*$*' $excluded
 elif [ "$1" = "measure" ]; then
   ./tomcat-analysis measure -folder ../tomcat/ -classFolder java:src/main/java:webapps/examples/WEB-INF/classes:webapps/examples/jsp/plugin/applet -testClassFolder test \
@@ -25,7 +26,7 @@ elif [ "$1" = "searchcause" ]; then
     -executionfile results/execute_tomcat.json \
     -testExecutor de.stro18.peass_ant.executor.AntTestExecutor -testTransformer de.dagere.peass.testtransformation.JUnitTestTransformer \
     -version b1ca09f34d0c22727bb5082053c7ae23c30ec8f2 -test org.apache.catalina.core.TestApplicationSessionCookieConfig\#testSetDomainInitPhase \
-    -vms 30 -iterations 50 -warmup 50 -repetitions 60  -timeout 20 -traceSizeInMb 1000 -measurementStrategy PARALLEL -timeout 2
+    -vms 30 -iterations 50 -warmup 50 -repetitions 60 -traceSizeInMb 1000 -measurementStrategy PARALLEL -timeout 10
 elif [ "$1" = "visualizerca" ]; then
   ./tomcat-analysis visualizerca -data ../tomcat_peass/ -propertyFolder results/properties_tomcat/
 elif [ "$1" = "createScript" ]; then
