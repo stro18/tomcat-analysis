@@ -95,6 +95,7 @@ org.apache.tomcat.buildutil.translate.TestUtils#*
 
 # Would require download of Tomcat-Native library binaries
 org.apache.tomcat.util.net.openssl.*
+org.apache.tomcat.jni.*
 
 # Performance tests (because they are slow and their execution traces are long)
 *Performance#*
@@ -102,14 +103,6 @@ org.apache.tomcat.util.net.openssl.*
 
 # Startup performance can not be measured by Peass (because Peass performs warmup before measurements)
 org.apache.catalina.startup.*
-
-# Throw exception iff executed by Peass
-org.apache.catalina.core.TestAsyncContextImpl#testAsyncIoEnd*
-org.apache.catalina.tribes.group.interceptors.TestTcpFailureDetector#*
-org.apache.catalina.tribes.group.interceptors.TestNonBlockingCoordinator#* 
-org.apache.catalina.tribes.group.interceptors.TestOrderInterceptor#testOrder2
-org.apache.catalina.tribes.group.TestGroupChannelMemberArrival#*
-org.apache.juli.TestFileHandlerNonRotatable#*
 
 # Database tests that can not be executed more than once
 org.apache.catalina.users.DataSourceUserDatabaseTests#*
@@ -304,3 +297,22 @@ org.apache.tomcat.util.http.parser.TesterParserPerformance#testBitSetVsBooleanAr
 org.apache.tomcat.util.http.parser.TesterParserPerformance#testExceptionVsBoundsCheck
 org.apache.tomcat.util.scan.TestClassParser#testAnnotations
 org.apache.tomcat.websocket.TestWebSocketFrameClient#testConnectToServerEndpoint
+
+# Throw AssertionError and/or RuntimeException iff (= only if) executed by Peass
+org.apache.catalina.core.TestAsyncContextImpl#testAsyncIoEnd*
+org.apache.catalina.tribes.group.interceptors.TestTcpFailureDetector#*
+org.apache.catalina.tribes.group.interceptors.TestNonBlockingCoordinator#* 
+org.apache.catalina.tribes.group.interceptors.TestOrderInterceptor#testOrder2
+org.apache.catalina.tribes.group.TestGroupChannelMemberArrival#*
+org.apache.juli.TestFileHandlerNonRotatable#*
+
+# Throw AssertionError and/or RuntimeException because they require certificates only available at Tomcat's official build pipeline
+org.apache.tomcat.util.net.TestCustomSsl#testCustomTrustManager*
+
+# AssertionError and/or RuntimeException because they require NIO Unix domain sockets
+org.apache.tomcat.util.net.TestXxxEndpoint#testUnixDomainSocket
+
+# Throw AssertionError and/or RuntimeException because they contain bugs (in every analyzed version)
+org.apache.catalina.nonblocking.TesterAjpNonBlockingClient#*
+org.apache.catalina.session.FileStoreTest#*
+org.apache.jasper.compiler.TesterValidator#testBug53867
