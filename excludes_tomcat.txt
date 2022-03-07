@@ -106,6 +106,7 @@ org.apache.catalina.startup.*
 
 # Database tests that can not be executed more than once
 org.apache.catalina.users.DataSourceUserDatabaseTests#*
+org.apache.catalina.users.MemoryUserDatabaseTests#*
 
 # Cause VM crash during measurement (Ant creates junitwatcher*.properties file to report the crash)
 org.apache.jasper.TestJspC#*
