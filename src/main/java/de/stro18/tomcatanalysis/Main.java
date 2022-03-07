@@ -3,7 +3,7 @@ package de.stro18.tomcatanalysis;
 import java.util.concurrent.Callable;
 
 import de.dagere.peass.*;
-import de.dagere.peass.clean.MeasurementDataCleaner;
+import de.dagere.peass.measurement.cleaning.CleaningStarter;
 import de.dagere.peass.measurement.utils.CreateMeasurementExecutionScript;
 import de.dagere.peass.reexecutions.FindMissingExecutions;
 import de.dagere.peass.visualization.VisualizeRCA;
@@ -14,8 +14,7 @@ import picocli.CommandLine.Command;
         DependencyExecutionReader.class,
         DependencyTestStarter.class,
         GetChanges.class,
-        ReadProperties.class,
-        MeasurementDataCleaner.class,
+        CleaningStarter.class,
         IsChange.class,
         RootCauseAnalysis.class,
         CreateMeasurementExecutionScript.class,
