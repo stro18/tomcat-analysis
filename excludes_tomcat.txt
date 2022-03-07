@@ -107,8 +107,8 @@ org.apache.catalina.startup.*
 # Database tests that can not be executed more than once
 org.apache.catalina.users.DataSourceUserDatabaseTests#*
 
-# Causes VM crash during measurement (Ant creates junitwatcher*.properties file to report the crash)
-org.apache.jasper.TestJspC#precompileWebapp_2_2
+# Cause VM crash during measurement (Ant creates junitwatcher*.properties file to report the crash)
+org.apache.jasper.TestJspC#*
 
 # Trace size over 100MB
 org.apache.catalina.ant.TestDeployTask#bug58086d
