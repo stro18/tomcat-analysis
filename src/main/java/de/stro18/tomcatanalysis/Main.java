@@ -3,19 +3,21 @@ package de.stro18.tomcatanalysis;
 import java.util.concurrent.Callable;
 
 import de.dagere.peass.*;
+import de.dagere.peass.measurement.cleaning.CleaningStarter;
+import de.dagere.peass.measurement.utils.CreateMeasurementExecutionScript;
 import de.dagere.peass.reexecutions.FindMissingExecutions;
 import de.dagere.peass.visualization.VisualizeRCA;
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
 
-// 2 Subcommands are still missing because old version of Peass does not contain the corresponding classes
 @Command(name = "peass", mixinStandardHelpOptions = true, subcommands = {
         DependencyExecutionReader.class,
         DependencyTestStarter.class,
         GetChanges.class,
-        ReadProperties.class,
+        CleaningStarter.class,
         IsChange.class,
         RootCauseAnalysis.class,
+        CreateMeasurementExecutionScript.class,
         VisualizeRCA.class,
         ContinuousExecutionStarter.class,
         FindMissingExecutions.class},
