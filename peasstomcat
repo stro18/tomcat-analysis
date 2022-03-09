@@ -40,5 +40,8 @@ elif [ "$1" = "measureSingle" ]; then
     -version $2 -test $3  \
     -vms 50 -iterations 200 -warmup 200 -repetitions 60 -measurementStrategy PARALLEL -timeout 2 -type1error 0.05
 elif [ "$1" = "getchanges" ]; then
+  ./peasstomcat clean
   ./tomcat-analysis getchanges -data ../tomcat_peass/ -executionfile $PEASS_REPOS/results/execute_tomcat.json -type1error 0.05
+elif [ "$1" = "clean" ]; then
+  ./tomcat-analysis clean -data ../tomcat_peass/ -executionfile $PEASS_REPOS/results/execute_tomcat.json
 fi
