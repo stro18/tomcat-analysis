@@ -17,14 +17,14 @@ if [ "$1" = "select" ]; then
   ./peasstomcat createScript
 elif [ "$1" = "measure" ]; then
   ./tomcat-analysis measure -folder ../tomcat/ -classFolder java:src/main/java:webapps/examples/WEB-INF/classes:webapps/examples/jsp/plugin/applet -testClassFolder test \
-    -executionfile results/execute_tomcat.json \
+    -executionfile results/traceTestSelection_tomcat.json \
     -testExecutor de.stro18.peass_ant.executor.AntTestExecutor -testTransformer de.dagere.peass.testtransformation.JUnitTestTransformer -statisticTest T_TEST \
     -startversion 6cf20b4a83f1e5b2ae86525b6b96389e801776b2 -endversion b1ca09f34d0c22727bb5082053c7ae23c30ec8f2  \
     -vms 50 -iterations 200 -warmup 200 -repetitions 60 -measurementStrategy PARALLEL -timeout 2 -type1error 0.05
-  ./tomcat-analysis getchanges -data ../tomcat_peass/ -executionfile results/execute_tomcat.json -type1error 0.05
+  ./tomcat-analysis getchanges -data ../tomcat_peass/ -executionfile results/traceTestSelection_tomcat.json -type1error 0.05
 elif [ "$1" = "searchcause" ]; then
   ./tomcat-analysis searchcause -folder ../tomcat/ -classFolder java:src/main/java:webapps/examples/WEB-INF/classes:webapps/examples/jsp/plugin/applet -testClassFolder test \
-    -executionfile results/execute_tomcat.json \
+    -executionfile results/traceTestSelection_tomcat.json \
     -testExecutor de.stro18.peass_ant.executor.AntTestExecutor -testTransformer de.dagere.peass.testtransformation.JUnitTestTransformer \
     -version b1ca09f34d0c22727bb5082053c7ae23c30ec8f2 -test org.apache.catalina.core.TestApplicationSessionCookieConfig\#testSetDomainInitPhase \
     -vms 50 -iterations 200 -warmup 200 -repetitions 60 -measurementStrategy PARALLEL -timeout 10
@@ -32,16 +32,16 @@ elif [ "$1" = "searchcause" ]; then
 elif [ "$1" = "visualizerca" ]; then
   ./tomcat-analysis visualizerca -data ../tomcat_peass/ -propertyFolder results/properties_tomcat/
 elif [ "$1" = "createScript" ]; then
-  ./tomcat-analysis createScript -executionfile results/execute_tomcat.json > results/runall.sh
+  ./tomcat-analysis createScript -executionfile results/traceTestSelection_tomcat.json > results/runall.sh
 elif [ "$1" = "measureSingle" ]; then
   ./tomcat-analysis measure -folder ../tomcat/ -classFolder java:src/main/java:webapps/examples/WEB-INF/classes:webapps/examples/jsp/plugin/applet -testClassFolder test \
-    -executionfile $PEASS_REPOS/results/execute_tomcat.json \
+    -executionfile $PEASS_REPOS/results/traceTestSelection_tomcat.json \
     -testExecutor de.stro18.peass_ant.executor.AntTestExecutor -testTransformer de.dagere.peass.testtransformation.JUnitTestTransformer -statisticTest T_TEST \
     -version $2 -test $3  \
     -vms 50 -iterations 200 -warmup 200 -repetitions 60 -measurementStrategy PARALLEL -timeout 2 -type1error 0.05
 elif [ "$1" = "getchanges" ]; then
   ./peasstomcat clean
-  ./tomcat-analysis getchanges -data ../tomcat_peass/ -executionfile $PEASS_REPOS/results/execute_tomcat.json -type1error 0.05
+  ./tomcat-analysis getchanges -data ../tomcat_peass/ -executionfile $PEASS_REPOS/results/traceTestSelection_tomcat.json -type1error 0.05
 elif [ "$1" = "clean" ]; then
-  ./tomcat-analysis clean -data ../tomcat_peass/ -executionfile $PEASS_REPOS/results/execute_tomcat.json
+  ./tomcat-analysis clean -data ../tomcat_peass/ -executionfile $PEASS_REPOS/results/traceTestSelection_tomcat.json
 fi
