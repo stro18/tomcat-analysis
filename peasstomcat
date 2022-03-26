@@ -38,7 +38,7 @@ elif [ "$1" = "measureSingle" ]; then
     -executionfile $PEASS_REPOS/results/traceTestSelection_tomcat.json \
     -testExecutor de.stro18.peass_ant.executor.AntTestExecutor -testTransformer de.dagere.peass.testtransformation.JUnitTestTransformer -statisticTest T_TEST \
     -version $2 -test $3  \
-    -vms 100 -iterations 200 -warmup 200 -repetitions 60 -measurementStrategy PARALLEL -timeout 2 -type1error 0.05
+    -vms 100 -iterations 400 -warmup 400 -repetitions 60 -measurementStrategy PARALLEL -timeout 2 -type1error 0.05
 elif [ "$1" = "getchanges" ]; then
   ./peasstomcat clean
   ./tomcat-analysis getchanges -data ../tomcat_peass/ -executionfile $PEASS_REPOS/results/traceTestSelection_tomcat.json -type1error 0.05
