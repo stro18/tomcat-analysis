@@ -100,12 +100,16 @@ org.apache.tomcat.jni.*
 # Performance tests (because they are slow and their execution traces are long)
 *Performance#*
 *Benchmarks#*
+*#*Performance*
+*#*performance*
+org.apache.catalina.filters.TestCsrfPreventionFilter2#testLruCacheConcurrency
 
 # Startup performance can not be measured by Peass (because Peass performs warmup before measurements)
 org.apache.catalina.startup.*
 
 # Database tests that can not be executed more than once
 org.apache.catalina.users.DataSourceUserDatabaseTests#*
+org.apache.catalina.users.MemoryUserDatabaseTests#*
 
 # Cause VM crash during measurement (Ant creates junitwatcher*.properties file to report the crash)
 org.apache.jasper.TestJspC#*
