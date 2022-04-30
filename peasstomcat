@@ -34,7 +34,7 @@ elif [ "$1" = "searchcause" ]; then
     -vms 100 -iterations 400 -warmup 400 -repetitions 60 -measurementStrategy PARALLEL -timeout 10 -type1error 0.01
   ./peasstomcat visualizerca
 elif [ "$1" = "createScript" ]; then
-  ./tomcat-analysis createScript -executionfile ${PEASS_REPOS}results/traceTestSelection_tomcat.json > $results/runall.sh
+  ./tomcat-analysis createScript -executionfile ${PEASS_REPOS}results/traceTestSelection_tomcat.json > results/runall.sh
 elif [ "$1" = "measureSingle" ]; then
   ./tomcat-analysis measure -folder ../tomcat/ -classFolder java:src/main/java:webapps/examples/WEB-INF/classes:webapps/examples/jsp/plugin/applet -testClassFolder test \
     -executionfile ${PEASS_REPOS}results/traceTestSelection_tomcat.json \
