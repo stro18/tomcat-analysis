@@ -39,7 +39,7 @@ elif [ "$1" = "searchcause" ]; then
     -executionfile ${PEASS_REPOS}results/traceTestSelection_tomcat.json \
     -testExecutor de.stro18.peass_ant.executor.AntTestExecutor -testTransformer de.dagere.peass.testtransformation.JUnitTestTransformer \
     -commit 6b8aeaf80860dd48d5ddd44e866fea5d6072ded3 -test org.apache.catalina.core.TestApplicationSessionCookieConfig\#testSetDomainInitPhase \
-    -vms 100 -iterations 400 -warmup 400 -repetitions 60 -measurementStrategy PARALLEL -timeout 10 -type1error 0.01 $excludeForTracing
+    -vms 100 -iterations 400 -warmup 400 -repetitions 60 -measurementStrategy PARALLEL -timeout 10 -type1error 0.01 "${excludeForTracing[@]}"
   ./peasstomcat visualizerca
 elif [ "$1" = "createScript" ]; then
   ./tomcat-analysis createScript -executionfile ${PEASS_REPOS}results/traceTestSelection_tomcat.json > results/runall.sh
@@ -61,7 +61,7 @@ elif [ "$1" = "searchcauseParameterized" ]; then
     -executionfile ${PEASS_REPOS}results/traceTestSelection_tomcat.json \
     -testExecutor de.stro18.peass_ant.executor.AntTestExecutor -testTransformer de.dagere.peass.testtransformation.JUnitTestTransformer \
     -commit $2 -test $3 \
-    -vms 100 -iterations 400 -warmup 400 -repetitions 60 -measurementStrategy PARALLEL -timeout 10 -type1error 0.01 $excludeForTracing
+    -vms 100 -iterations 400 -warmup 400 -repetitions 60 -measurementStrategy PARALLEL -timeout 10 -type1error 0.01 "${excludeForTracing[@]}"
 elif [ "$1" = "visualizerca" ]; then
   ./tomcat-analysis visualizerca -data ../tomcat_peass/ -propertyFolder ${PEASS_REPOS}results/properties_tomcat/
 fi
