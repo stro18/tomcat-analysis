@@ -1,9 +1,12 @@
 #!/usr/bin/env bash
 
-# Folder that contains results folder of test selection
+# Needs to be set to the folder that contains the results/ folder of test selection
 PEASS_REPOS="./"
 
-# last line of file needs to be empty
+# Constant that contains base package of unit tests
+ORG_APACHE="org.apache.*"
+
+# Read excluded tests; last line of file needs to be empty
 fileExcludedTests=./excludes_tomcat.txt
 while read -r line; do
   if [[ ! -z "$line" && ! $line =~ ^#.* ]]; then
@@ -11,7 +14,7 @@ while read -r line; do
   fi
 done < "$fileExcludedTests"
 
-# last line of file needs to be empty
+# Read methods excluded for tracing; last line of file needs to be empty
 fileTracing=./excludeForTracing.txt
 while read -r line; do
   if [[ ! -z "$line" && ! $line =~ ^#.* ]]; then
@@ -24,7 +27,7 @@ if [ "$1" = "select" ]; then
     -testExecutor de.stro18.peass_ant.executor.AntTestExecutor -testTransformer de.dagere.peass.testtransformation.JUnitTestTransformer \
     -startcommit fa64c162a505bf36c0335d713dea5606f9185dc2 -endcommit 6b8aeaf80860dd48d5ddd44e866fea5d6072ded3 \
     -threads 2 -traceSizeInMb 10 -timeout 2 \
-    -includes org.apache.* -forbiddenMethods org.apache.catalina.startup.Tomcat#start -excludes '*$*' $excludedTests "${excludeForTracing[@]}"
+    -includes ${ORG_APACHE}TestApplicationSessionCookieConfig#* -forbiddenMethods org.apache.catalina.startup.Tomcat#start -excludes '*$*' $excludedTests "${excludeForTracing[@]}"
   ./peasstomcat createScript
 elif [ "$1" = "measure" ]; then
   ./tomcat-analysis measure -folder ../tomcat/ -classFolder java:src/main/java:webapps/examples/WEB-INF/classes:webapps/examples/jsp/plugin/applet -testClassFolder test \
