@@ -6,7 +6,7 @@ changes between commits of [Apache Tomcat](https://github.com/apache/tomcat). Cu
 
 ## Building
 
-(Prerequisite: Build Peass and Peass-Ant plugin)  
+(Prerequisite: Build and install Peass (fork) and Peass-Ant plugin)  
 
     mvn clean package  
 
@@ -22,14 +22,15 @@ in the file ./peasstomcat. In the default configuration, commit `6b8aeaf` is ana
 1. Regression Test Selection:
    1. Delete ./results and ../tomcat_peass (if necessary)
    2. Execute `./peasstomcat select`
-      - Selected tests in results/traceTestSelection_tomcat.json
+      - Takes around 10 minutes with default configuration
+      - Selected tests are written to results/traceTestSelection_tomcat.json
 2. Performance Measurement and Comparison:
    1. Copy the commands from ./results/runall.sh to ./measureWrapper
    2. Execute `./measureWrapper`
    3. Execute `./peasstomcat getchanges`
-      - Detected performance changes in results/changes.json
+      - Detected performance changes are written to results/changes.json
 3. Root Cause Analysis:
    1. Copy the commands from ./results/run-rca-tomcat.sh to ./rcaWrapper
    2. Execute `./rcaWrapper`
    3. Execute `./peasstomcat visualizerca`
-      - Visualized root causes in results/\<analyzedCommit\>/\<analyzedTest>.html
+      - Visualized root causes are written to results/\<analyzedCommit\>/\<analyzedTest>.html
